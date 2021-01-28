@@ -10,12 +10,15 @@
 ## Planerings krav
 
 - Idé
-  
+- Vår ide är att göra ett forum som kan behandla både inlägg samt kommentarer. Den som har loggat in på forumet kommer därefter att kunna publicera egna inlägg. Icke inloggade besökare kan endast visa dem inlägg som redan finns. Vi kommer använda oss av bootstrap som en grund i kodningen men försöka oss på att använda SCSS för att göra vårt forum unikt. 
+
 - Skiss
   
 - Mockup
   
 - Målgrupp, Personas och scenarios
+
+- Målgruppen kommer att vara hårdrocks, metal intresserade besökare som antingen endast är intresserade av själva musiken men också för dem som samlar på t.ex. vinylskivor.
   
   - Frågorna på sida 11 i slides
     
