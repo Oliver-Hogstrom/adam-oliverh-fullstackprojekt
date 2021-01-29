@@ -26,4 +26,6 @@
 
 > Vi kommer att börja med att köra sketcher, sitemaps, mockups av hur sidan kommer att se ut inann vi börjar med något annat eftersom det kommer vara otroligt mycket enklare att bygga något som man redan (På ett ungefär) vet hur den kommer att se ut samt vilken struktur det kommer att ha.
 
+> Efter att vi kört sketcherna kommer vi att börja med grunden till projektet genom att börja med frontend för att kunna få en grund i hur siten ska vara uppbyggd. Detta siktar vi på att börja med vecka 5 beroende på hur långt vi kommer med sketcherna.
+
 > 
