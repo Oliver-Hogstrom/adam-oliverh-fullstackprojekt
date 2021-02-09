@@ -41,7 +41,3 @@
 > Under lektionen 2/2 kommer vi kolla på påtentiella färg scheman samt bilder som vi kan använda på sidan. Vi kommer använda oss av olika "colorpickers" för att få rätt färger. Till bilderna kommer vi hitta bilder inom.
 https://coolors.co/031926-cad49d-09814a-714955-715b64
 
-# Andra funktioner
-> Skapa Inloggningar för att användare ska kunna köra "read or write", medans dem som inte har ett konto bara kan läsa.
-> user: name, password, email, age(maybe), origin
-> rewies > reply > store information
