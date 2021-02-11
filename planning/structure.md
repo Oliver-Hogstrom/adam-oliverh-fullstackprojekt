@@ -1,4 +1,4 @@
-# Andra funktioner
+# Funktioner
 > Skapa Inloggningar för att användare ska kunna köra "read or write", medans dem som inte har ett konto bara kan läsa.
 
 > user: name, password, email, age(maybe), origin
@@ -13,4 +13,8 @@
 
 > Skapa undersidor som tar dig till sidan om skivor, om bra album att lyssna på samt kontakt sidan
 
-> 
+# Tidsplanering
+
+- Wireframe samt sitemap är just nu klara, endast en mockup som behövs göras vilket kommer göras innan/under sportlovet.
+
+- Efter lovet är det dags att börja bygga upp forumet. Det som 
