@@ -17,4 +17,8 @@
 
 - Wireframe samt sitemap är just nu klara, endast en mockup som behövs göras vilket kommer göras innan/under sportlovet.
 
-- Efter lovet är det dags att börja bygga upp forumet. Det som 
+- Efter lovet är det dags att börja bygga upp forumet. Det som vi kommer börja med är att bygga en bra grund med hjälp av Bootstrap för att få in en header, ett bra grid system som är bra strukturerat, en bra och stilig navbar samt en footer. Detta kommer att göras av oss båda då Oliver kommer skriva in koden medan Adam hjälper till med ideer.
+
+- Därefter ska vi kolla på färg scheman och implementera det så att sidan ser bra ut men också att ingen av färgerna skär sig och det ser lockande ut.
+
+- 
