@@ -21,4 +21,5 @@
 
 - Därefter ska vi kolla på färg scheman och implementera det så att sidan ser bra ut men också att ingen av färgerna skär sig och det ser lockande ut.
 
-- 
+- Veckan efter lovet har vi som mål att implemnetera EJS för att kunna göra sidan dynamisk i den utsträckning att användare får olika rättigheter om man loggat in eller ej, om man loggar in kommer vissa saker att ändras på sidan t.ex. att "Logga in" kommer att byats mot "Logga ut". EJS kommer även att användas för att kunna lägga upp inlägg på forumet.
+
