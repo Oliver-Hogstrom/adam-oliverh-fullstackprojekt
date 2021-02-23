@@ -15,7 +15,7 @@ app.use(express.urlencoded())
 app.set('view-engine', 'ejs')
 
 // This is for the EJS files to be POSTED on the server
-app.post('/', function (req, res) {
+app.get('/', function (req, res) {
   res.sendFile(pagesDir + 'index.ejs')
 })
 
