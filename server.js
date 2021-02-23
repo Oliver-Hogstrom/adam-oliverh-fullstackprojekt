@@ -1,6 +1,7 @@
 const express = require('express')
 const ejs = require('ejs')
 const databaseModule = require('./module.js')
+const userModel = require('./userModel')
 const app = express()
 const port = 3000
 
