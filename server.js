@@ -19,6 +19,21 @@ app.get('/', function (req, res) {
   res.render(pagesDir + 'index.ejs')
 })
 
+app.get('/login', (req, res) => {
+  res.render('pages/login.ejs')
+})
+
+app.get('/register', (req, res) => {
+  res.render('pages/register.ejs')
+})
+
+
+app.post('/', function (req, res) {
+  let person = personModule.createPerson(req.body.fname, req.body.age)
+  databaseModule.storeElement(person)
+  res.render("pages/index.ejs", { name: "" + req.body.fname })
+})
+
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}!`)
 })
