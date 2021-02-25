@@ -16,7 +16,7 @@ app.set('view-engine', 'ejs')
 
 // This is for the EJS files to be POSTED on the server
 app.get('/', function (req, res) {
-  res.sendFile(pagesDir + 'index.ejs')
+  res.render(pagesDir + 'index.ejs')
 })
 
 app.listen(port, () => {
