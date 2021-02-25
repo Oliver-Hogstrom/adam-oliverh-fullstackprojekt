@@ -34,6 +34,25 @@ app.post('/', function (req, res) {
   res.render("pages/index.ejs", { name: "" + req.body.fname })
 })
 
+app.post('/register', async (req, res) => {
+  let user = userModel.createUser(req.body.uName, req.body.uEmail, req.body.uPassword)
+  await databaseModule.storeElement(user)
+  res.redirect('/login')
+})
+
+app.post('/login', async (req, res) => {
+  let user = await userModel.getUser(req.body.uName)
+  if (user) {
+      if (user.uPassword === req.body.uPassword) {
+          res.send('Success')
+      } else {
+          res.send('Incorrect Password')
+      }
+  } else {
+      res.send('User Does Not Exist')
+  }
+})
+
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}!`)
 })
