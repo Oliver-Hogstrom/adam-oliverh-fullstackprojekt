@@ -8,8 +8,13 @@ const port = 3000
 
 const clientDir = __dirname + "\\client\\"
 const pagesDir = __dirname + "\\pages\\"
+const BSDir = __dirname + "\\bootstrap\\"
+const styleDir = __dirname + "\\style\\"
 
 app.use(express.static(clientDir))
+app.use(express.static(BSDir))
+app.use(express.static(styleDir))
+
 app.use(express.json())
 app.use(express.urlencoded())
 app.set('view-engine', 'ejs')
@@ -31,7 +36,9 @@ app.get('/register', (req, res) => {
 app.post('/', function (req, res) {
   let person = personModule.createPerson(req.body.fname, req.body.age)
   databaseModule.storeElement(person)
-  res.render("pages/index.ejs", { name: "" + req.body.fname })
+  res.render("pages/index.ejs", {
+    name: "" + req.body.fname
+  })
 })
 
 app.post('/register', async (req, res) => {
@@ -43,16 +50,16 @@ app.post('/register', async (req, res) => {
 app.post('/login', async (req, res) => {
   let user = await userModel.getUser(req.body.uName)
   if (user) {
-      if (user.uPassword === req.body.uPassword) {
-          res.send('Success')
-      } else {
-          res.send('Incorrect Password')
-      }
+    if (user.uPassword === req.body.uPassword) {
+      res.send('Success')
+    } else {
+      res.send('Incorrect Password')
+    }
   } else {
-      res.send('User Does Not Exist')
+    res.send('User Does Not Exist')
   }
 })
 
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}!`)
+  console.log(`Example app listening on port ${port}!`)
 })
