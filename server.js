@@ -1,6 +1,6 @@
 const express = require('express')
 const ejs = require('ejs')
-const databaseModule = require('./module.js')
+const databaseModule = require('./module')
 const personModule = require('./personmodule')
 const userModel = require('./userModel')
 const app = express()
