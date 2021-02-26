@@ -8,16 +8,18 @@ const port = 3000
 
 const clientDir = __dirname + "\\client\\"
 const pagesDir = __dirname + "\\pages\\"
-const BSDir = __dirname + "\\bootstrap\\"
 const styleDir = __dirname + "\\style\\"
+const bootDir = __dirname + "\\bootstrap\\"
 
 app.use(express.static(clientDir))
-app.use(express.static(BSDir))
-app.use(express.static(styleDir))
-
 app.use(express.json())
 app.use(express.urlencoded())
 app.set('view-engine', 'ejs')
+
+// The get for the Bootstrap file
+app.get('/bootstrap', (req, res) => {
+  res.render(bootDir + 'bootstrap.min.css')
+})
 
 // This is for the EJS files to be POSTED on the server
 app.get('/', function (req, res) {
@@ -25,18 +27,18 @@ app.get('/', function (req, res) {
 })
 
 app.get('/login', (req, res) => {
-  res.render('pages/login.ejs')
+  res.render(pagesDir + 'login.ejs')
 })
 
 app.get('/register', (req, res) => {
-  res.render('pages/register.ejs')
+  res.render(pagesDir + 'register.ejs')
 })
 
 
 app.post('/', function (req, res) {
   let person = personModule.createPerson(req.body.fname, req.body.age)
   databaseModule.storeElement(person)
-  res.render("pages/index.ejs", {
+  res.render(pagesDir + 'index.ejs', {
     name: "" + req.body.fname
   })
 })
