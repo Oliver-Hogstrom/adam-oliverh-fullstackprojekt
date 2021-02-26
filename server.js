@@ -7,31 +7,25 @@ const app = express()
 const port = 3000
 
 const clientDir = __dirname + "\\client\\"
-const pagesDir = __dirname + "\\pages\\"
-const styleDir = __dirname + "\\style\\"
-const bootDir = __dirname + "\\bootstrap\\"
 
 app.use(express.static(clientDir))
 app.use(express.json())
 app.use(express.urlencoded())
-app.set('view-engine', 'ejs')
+app.set('view engine', 'ejs')
 
-// The get for the Bootstrap file
-app.get('/bootstrap', (req, res) => {
-  res.render(bootDir + 'bootstrap.min.css')
-})
+
 
 // This is for the EJS files to be POSTED on the server
 app.get('/', function (req, res) {
-  res.render(pagesDir + 'index.ejs')
+  res.render('./pages/index.ejs')
 })
 
 app.get('/login', (req, res) => {
-  res.render(pagesDir + 'login.ejs')
+  res.render('./pages/login.ejs')
 })
 
 app.get('/register', (req, res) => {
-  res.render(pagesDir + 'register.ejs')
+  res.render('./pages/register.ejs')
 })
 
 
