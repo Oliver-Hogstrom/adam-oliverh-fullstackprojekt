@@ -27,6 +27,17 @@ app.get('/register', (req, res) => {
   res.render('./pages/register.ejs')
 })
 
+app.get('/vinyl', (req, res) => {
+  res.render('./pages/vinyl.ejs')
+})
+
+app.get('/contact', (req, res) => {
+  res.render('./pages/contact.ejs')
+})
+
+app.get('/purpose', (req, res) => {
+  res.render('./pages/purpose.ejs')
+})
 
 app.post('/', function (req, res) {
   let person = personModule.createPerson(req.body.fname, req.body.age)
