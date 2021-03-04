@@ -7,14 +7,16 @@ const app = express()
 const port = 3000
 
 const clientDir = __dirname + "\\client\\"
+const styleDir = __dirname + "\\style\\"
 
 app.use(express.static(clientDir))
+app.use(express.static(styleDir))
 app.use(express.json())
 app.use(express.urlencoded())
 app.set('view engine', 'ejs')
 
 
-// This is for the EJS files to be POSTED on the server
+// This is for the EJS files to be GET on the server
 app.get('/', function (req, res) {
   res.render('./pages/index.ejs')
 })
