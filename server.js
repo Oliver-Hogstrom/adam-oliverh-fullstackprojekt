@@ -1,10 +1,14 @@
 const express = require('express')
+const mongoose = require('mongoose')
 const ejs = require('ejs')
 const databaseModule = require('./module')
 const personModule = require('./personmodule')
 const userModel = require('./userModel')
+const formModel = require('./formModel')
 const app = express()
 const port = 3000
+
+
 
 const clientDir = __dirname + "\\client\\"
 const styleDir = __dirname + "\\style\\"
@@ -41,24 +45,24 @@ app.get('/purpose', (req, res) => {
   res.render('./pages/purpose.ejs')
 })
 
-app.post('/', function (req, res) {
-  let person = personModule.createPerson(req.body.fname, req.body.age)
-  databaseModule.storeElement(person)
-  res.render(pagesDir + 'index.ejs', {
-    name: "" + req.body.fname
-  })
-})
+// app.post('/', function (req, res) {
+//   let person = personModule.createPerson(req.body.fname, req.body.age)
+//   databaseModule.storeElement(person)
+//   res.render(pagesDir + 'index.ejs', {
+//     name: "" + req.body.fname
+//   })
+// })
 
 app.post('/register', async (req, res) => {
-  let user = userModel.createUser(req.body.uName, req.body.uEmail, req.body.uPassword)
+  let user = userModel.createUser(req.body.userName, req.body.mail, req.body.password)
   await databaseModule.storeElement(user)
   res.redirect('/login')
 })
 
 app.post('/login', async (req, res) => {
-  let user = await userModel.getUser(req.body.uName)
+  let user = await userModel.getUser(req.body.userName)
   if (user) {
-    if (user.uPassword === req.body.uPassword) {
+    if (user.password === req.body.password) {
       res.send('Success')
     } else {
       res.send('Incorrect Password')
