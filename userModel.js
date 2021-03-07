@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
 const User = mongoose.model('User', userSchema);
 
 exports.createUser = (userName, mail, password) => {
-    let user = new user({
+    let user = new User({
         name: userName,
         email: mail,
         password: password
