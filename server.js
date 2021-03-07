@@ -59,7 +59,7 @@ app.post('/register', async (req, res) => {
   res.redirect('/login')
 })
 
-app.post('/login', async (req, res) => {
+app.post('/login', async function(req, res) {
   let user = await userModel.getUser(req.body.userName)
   if (user) {
     if (user.password === req.body.password) {

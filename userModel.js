@@ -17,9 +17,10 @@ exports.createUser = (userName, mail, password) => {
     return user;
 }
 
-exports.getUser = async (userName) => {
+exports.getUser = async (userName, password) => {
     var user = await User.find({
-        name: userName
+        name: userName,
+        password: password
     })
     return user
 }
