@@ -55,16 +55,21 @@ app.get('/purpose', (req, res) => {
 
 app.post('/register', async (req, res) => {
   const hasedPassword = await bcrypt.hash(req.body.password, 10)
-  let user = userModel.createUser(req.body.userName, req.body.mail, req.body.password)
+  let user = userModel.createUser(req.body.userName, req.body.mail, hasedPassword)
   await databaseModule.storeElement(user)
   res.redirect('/login')
 })
 
 app.post('/login', async function(req, res) {
   let user = await userModel.getUser(req.body.userName)
-  if (req.body.password === user.password) {
-    console.log("Succes");
-  }
+  await bcrypt.compare (req.body.password, user.password, (err, success) =>{
+
+    if (succsess) {
+      console.log("Succes");
+    }else{
+      console.log("Fail");
+    }
+  })
 })
 
 app.listen(port, () => {
