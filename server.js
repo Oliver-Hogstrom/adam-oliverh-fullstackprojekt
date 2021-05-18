@@ -1,8 +1,8 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const bcrypt = require ('bcryptjs')
 const ejs = require('ejs')
 const databaseModule = require('./module')
-const personModule = require('./personmodule')
 const userModel = require('./userModel')
 const formModel = require('./formModel')
 const app = express()
@@ -54,6 +54,7 @@ app.get('/purpose', (req, res) => {
 // })
 
 app.post('/register', async (req, res) => {
+  const hasedPassword = await bcrypt.hash(req.body.password, 10)
   let user = userModel.createUser(req.body.userName, req.body.mail, req.body.password)
   await databaseModule.storeElement(user)
   res.redirect('/login')
@@ -61,14 +62,8 @@ app.post('/register', async (req, res) => {
 
 app.post('/login', async function(req, res) {
   let user = await userModel.getUser(req.body.userName)
-  if (user) {
-    if (user.password === req.body.password) {
-      res.send('Success')
-    } else {
-      res.send('Incorrect Password')
-    }
-  } else {
-    res.send('User Does Not Exist')
+  if (req.body.password === user.password) {
+    console.log("Succes");
   }
 })
 
