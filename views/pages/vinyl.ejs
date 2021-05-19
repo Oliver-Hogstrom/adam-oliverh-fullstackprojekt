@@ -10,29 +10,26 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-       
-<style>
-    .main{
-        margin-left: auto;
-        margin-right: auto;
-        height: 75%;
-    }
-</style>
+       <link rel="stylesheet" href="/style/main.css">
 
 </head>
 
 <body>
-    <div class="main">
-    <form action="/message" method="POST">
-        <label for="name">Write your name here!:</label>
-        <input type="text" id="name" name="name">
-        <label for="msg">Write your message here!:</label>
-        <input type="text" id="msg" name="msg">
-        <button type="submit">Submit your message!</button>
-    </form>
+    <div id="mainForm" class="container">
+        <div class="jumbotron text-center">
+            <form action="/message" method="POST">
+            <label for="name">Write your name here!</label>
+            <input type="text" id="name" name="name">
+            <br>
+            <label for="msg">Write your message here!</label>
+            <input type="text" id="msg" name="msg">
+            <br>
+            <button type="submit">Submit your message!</button>
+            </form>
     <% for( let i = 0; i < msg.length; i++ ) { %>
         <h1><%- msg[i].msg %>  </h1>
     <% } %>
+</div>
 </div>
 </body>
 

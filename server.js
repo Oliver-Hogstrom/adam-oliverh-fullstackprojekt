@@ -12,7 +12,6 @@ const clientDir = __dirname + "\\client\\"
 const styleDir = __dirname + "\\style\\"
 
 app.use(express.static(clientDir))
-app.use(express.static(styleDir))
 app.use(express.json())
 app.use(express.urlencoded())
 app.set('view engine', 'ejs')
