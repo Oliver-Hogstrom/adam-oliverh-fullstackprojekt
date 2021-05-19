@@ -8,8 +8,6 @@ const formModel = require('./formModel')
 const app = express()
 const port = 3000
 
-
-
 const clientDir = __dirname + "\\client\\"
 const styleDir = __dirname + "\\style\\"
 
@@ -45,29 +43,26 @@ app.get('/purpose', (req, res) => {
   res.render('./pages/purpose.ejs')
 })
 
-// app.post('/', function (req, res) {
-//   let person = personModule.createPerson(req.body.fname, req.body.age)
-//   databaseModule.storeElement(person)
-//   res.render(pagesDir + 'index.ejs', {
-//     name: "" + req.body.fname
-//   })
-// })
 
 app.post('/register', async (req, res) => {
   const hasedPassword = await bcrypt.hash(req.body.password, 10)
-  let user = userModel.createUser(req.body.userName, req.body.mail, hasedPassword)
-  await databaseModule.storeElement(user)
+  userModel.saveUser(req.body.name, hasedPassword)
   res.redirect('/login')
 })
 
 app.post('/login', async function(req, res) {
-  let user = await userModel.getUser(req.body.userName)
+  const user = await userModel.getUser(req.body.name)
   await bcrypt.compare (req.body.password, user.password, (err, success) =>{
-
-    if (succsess) {
-      console.log("Succes");
-    }else{
-      console.log("Fail");
+    if (err) {
+      console.log(err);
+    }
+    if (success){
+      console.log("Succes")
+      res.redirect('/')
+    } 
+    else {
+      console.log("Fail")
+      res.redirect('/register')
     }
   })
 })
