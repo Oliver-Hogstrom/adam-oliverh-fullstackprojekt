@@ -4,7 +4,7 @@ const bcrypt = require ('bcryptjs')
 const ejs = require('ejs')
 const databaseModule = require('./module')
 const userModel = require('./userModel')
-const formModel = require('./formModel')
+const msgModel = require ('./msgModel')
 const app = express()
 const port = 3000
 
@@ -23,6 +23,11 @@ app.get('/', function (req, res) {
   res.render('./pages/index.ejs')
 })
 
+app.get('/msg', async(req, res) => {
+  const posts = await msgModel.getAllMessages()
+  res.render('./pages/vinyl.ejs', { msg: posts })
+})
+
 app.get('/login', (req, res) => {
   res.render('./pages/login.ejs')
 })
@@ -31,9 +36,6 @@ app.get('/register', (req, res) => {
   res.render('./pages/register.ejs')
 })
 
-app.get('/vinyl', (req, res) => {
-  res.render('./pages/vinyl.ejs')
-})
 
 app.get('/contact', (req, res) => {
   res.render('./pages/contact.ejs')
@@ -48,6 +50,14 @@ app.post('/register', async (req, res) => {
   const hasedPassword = await bcrypt.hash(req.body.password, 10)
   userModel.saveUser(req.body.name, hasedPassword)
   res.redirect('/login')
+})
+
+app.post('/message', async function(req, res) {
+
+  let post = msgModel.createMsg(req.body.msg, req.body.name)
+  databaseModule.storeElement(post)
+
+  res.redirect('/msg')
 })
 
 app.post('/login', async function(req, res) {
