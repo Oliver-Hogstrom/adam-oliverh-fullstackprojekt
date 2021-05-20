@@ -36,7 +36,7 @@ app.get('/register', (req, res) => {
 })
 
 
-app.get('/contact', (req, res) => {
+app.get('/contact', (req, res ) => {
   res.render('./pages/contact.ejs')
 })
 
@@ -44,6 +44,9 @@ app.get('/purpose', (req, res) => {
   res.render('./pages/purpose.ejs')
 })
 
+app.get('/style', (req, res) => {
+  res.sendFile(styleDir + 'main.css')
+})
 
 app.post('/register', async (req, res) => {
   const hasedPassword = await bcrypt.hash(req.body.password, 10)
