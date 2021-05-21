@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,IAAI,CAAA;EACA,UAAU,ECHP,SAAS;CDIf;;AACD,AAAA,OAAO,CAAA;EACH,gBAAgB,ECLX,KAAK;CDMb;;AACD,AACI,MADE,CACF,SAAS,CAAA;EACL,UAAU,EAAE,IAAI;EAChB,aAAa,EAAE,IAAI;CACtB;;AAGL,AACI,SADK,CACL,SAAS,CAAA;EACL,UAAU,EAAE,IAAI;EAChB,aAAa,EAAE,IAAI;CACtB;;AAGL,AACI,OADG,CACH,CAAC,CAAA;EACG,WAAW,EAAE,GAAG;CACnB",
+    "sources": [
+        "master.scss",
+        "_varible.scss"
+    ],
+    "names": [],
+    "file": "master.css"
+}

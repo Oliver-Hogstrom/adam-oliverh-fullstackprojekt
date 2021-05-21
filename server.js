@@ -45,7 +45,7 @@ app.get('/purpose', (req, res) => {
 })
 
 app.get('/style', (req, res) => {
-  res.sendFile(styleDir + 'main.css')
+  res.sendFile(styleDir + 'master.css')
 })
 
 app.post('/register', async (req, res) => {
