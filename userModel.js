@@ -8,19 +8,15 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', userSchema);
 
-exports.createUser = (userName, mail, password) => {
-    let user = new User({
-        name: userName,
-        email: mail,
+exports.saveUser = (name, password) => {
+    var user = User({
+        name: name,
+        // email: mail,
         password: password
     })
-    return user;
+    user.save();
 }
 
-exports.getUser = async (userName, password) => {
-    var user = await User.find({
-        name: userName,
-        password: password
-    })
-    return user
+exports.getUser = async (name) => {
+    return await User.findOne({name: name})
 }

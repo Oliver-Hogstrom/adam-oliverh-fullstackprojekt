@@ -1,20 +1,17 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const bcrypt = require ('bcryptjs')
 const ejs = require('ejs')
 const databaseModule = require('./module')
-const personModule = require('./personmodule')
 const userModel = require('./userModel')
-const formModel = require('./formModel')
+const msgModel = require ('./msgModel')
 const app = express()
 const port = 3000
-
-
 
 const clientDir = __dirname + "\\client\\"
 const styleDir = __dirname + "\\style\\"
 
 app.use(express.static(clientDir))
-app.use(express.static(styleDir))
 app.use(express.json())
 app.use(express.urlencoded())
 app.set('view engine', 'ejs')
@@ -25,6 +22,11 @@ app.get('/', function (req, res) {
   res.render('./pages/index.ejs')
 })
 
+app.get('/msg', async(req, res) => {
+  const posts = await msgModel.getAllMessages()
+  res.render('./pages/vinyl.ejs', { msg: posts })
+})
+
 app.get('/login', (req, res) => {
   res.render('./pages/login.ejs')
 })
@@ -33,11 +35,8 @@ app.get('/register', (req, res) => {
   res.render('./pages/register.ejs')
 })
 
-app.get('/vinyl', (req, res) => {
-  res.render('./pages/vinyl.ejs')
-})
 
-app.get('/contact', (req, res) => {
+app.get('/contact', (req, res ) => {
   res.render('./pages/contact.ejs')
 })
 
@@ -45,31 +44,39 @@ app.get('/purpose', (req, res) => {
   res.render('./pages/purpose.ejs')
 })
 
-// app.post('/', function (req, res) {
-//   let person = personModule.createPerson(req.body.fname, req.body.age)
-//   databaseModule.storeElement(person)
-//   res.render(pagesDir + 'index.ejs', {
-//     name: "" + req.body.fname
-//   })
-// })
+app.get('/style', (req, res) => {
+  res.sendFile(styleDir + 'master.css')
+})
 
 app.post('/register', async (req, res) => {
-  let user = userModel.createUser(req.body.userName, req.body.mail, req.body.password)
-  await databaseModule.storeElement(user)
+  const hasedPassword = await bcrypt.hash(req.body.password, 10)
+  userModel.saveUser(req.body.name, hasedPassword)
   res.redirect('/login')
 })
 
+app.post('/message', async function(req, res) {
+
+  let post = msgModel.createMsg(req.body.msg, req.body.name)
+  databaseModule.storeElement(post)
+
+  res.redirect('/msg')
+})
+
 app.post('/login', async function(req, res) {
-  let user = await userModel.getUser(req.body.userName)
-  if (user) {
-    if (user.password === req.body.password) {
-      res.send('Success')
-    } else {
-      res.send('Incorrect Password')
+  const user = await userModel.getUser(req.body.name)
+  await bcrypt.compare (req.body.password, user.password, (err, success) =>{
+    if (err) {
+      console.log(err);
     }
-  } else {
-    res.send('User Does Not Exist')
-  }
+    if (success){
+      console.log("Succes")
+      res.redirect('/')
+    } 
+    else {
+      console.log("Fail")
+      res.redirect('/register')
+    }
+  })
 })
 
 app.listen(port, () => {
